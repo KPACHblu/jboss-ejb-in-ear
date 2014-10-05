@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" name="jboss-ejb-in-ear-ear:ear exploded">
+    <output-path>$PROJECT_DIR$/ear/target/jboss-ejb-in-ear</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="jboss-ejb-in-ear-ear/javaeeApplication/JavaEE" />
+      <element id="archive" name="jboss-ejb-in-ear-web.war">
+        <element id="artifact" artifact-name="jboss-ejb-in-ear-web:war exploded" />
+      </element>
+      <element id="archive" name="jboss-ejb-in-ear-ejb.jar">
+        <element id="module-output" name="jboss-ejb-in-ear-ejb" />
+      </element>
+    </root>
+  </artifact>
+</component>

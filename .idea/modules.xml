@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jboss-ejb-in-ear.iml" filepath="$PROJECT_DIR$/jboss-ejb-in-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ear/jboss-ejb-in-ear-ear.iml" filepath="$PROJECT_DIR$/ear/jboss-ejb-in-ear-ear.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ejb/jboss-ejb-in-ear-ejb.iml" filepath="$PROJECT_DIR$/ejb/jboss-ejb-in-ear-ejb.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/jboss-ejb-in-ear-web.iml" filepath="$PROJECT_DIR$/web/jboss-ejb-in-ear-web.iml" />
+    </modules>
+  </component>
+</project>
+
