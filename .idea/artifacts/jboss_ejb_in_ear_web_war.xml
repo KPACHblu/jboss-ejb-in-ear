@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="jboss-ejb-in-ear-web:war">
+    <output-path>$PROJECT_DIR$/web/target</output-path>
+    <root id="archive" name="jboss-ejb-in-ear-web.war">
+      <element id="artifact" artifact-name="jboss-ejb-in-ear-web:war exploded" />
+    </root>
+  </artifact>
+</component>
