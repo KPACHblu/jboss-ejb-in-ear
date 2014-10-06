@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3e7bf8ef-9965-4f4a-9d08-7cf8ecef3b02" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/src/main/webapp/greeter.xhtml" afterPath="$PROJECT_DIR$/web/src/main/webapp/greeter.xhtml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/jboss_ejb_in_ear_web_war_exploded.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/jboss_ejb_in_ear_web_war_exploded.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="jboss-ejb-in-ear.iws" />
@@ -517,6 +512,11 @@
       <workItem from="1412601051372" duration="881000" />
       <workItem from="1412602937883" duration="2681000" />
     </task>
+    <task id="LOCAL-00001" summary="Merge branch 'master' of https://github.com/KPACHblu/jboss-ejb-in-ear&#10;&#10;">
+      <created>1412610804713</created>
+      <updated>1412610804713</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
