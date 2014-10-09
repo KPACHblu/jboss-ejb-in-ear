@@ -24,6 +24,11 @@
             <artifactId>ee6-ejb</artifactId>
             <type>ejb</type>
         </dependency>
+        <dependency>
+            <groupId>org.aub</groupId>
+            <artifactId>ee6-persistence</artifactId>
+            <type>jar</type>
+        </dependency>
     </dependencies>
 
     <build>
@@ -51,6 +56,10 @@
                             <artifactId>ee6-web</artifactId>
                             <contextRoot>/ee6-web</contextRoot>
                         </webModule>
+                        <jarModule>
+                            <groupId>org.aub</groupId>
+                            <artifactId>ee6-persistence</artifactId>
+                        </jarModule>
                     </modules>
                     <fileNameMapping>no-version</fileNameMapping>
                 </configuration>

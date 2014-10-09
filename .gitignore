@@ -1,4 +1,5 @@
 .idea
 /ear/target
 /ejb/target
+/persistence/target
 /web/target

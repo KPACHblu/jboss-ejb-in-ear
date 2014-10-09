@@ -9,6 +9,7 @@
     <packaging>pom</packaging>
 
     <modules>
+        <module>persistence</module>
         <module>ejb</module>
         <module>web</module>
         <module>ear</module>
@@ -28,12 +29,22 @@
         <version.war.plugin>2.1.1</version.war.plugin>
 
         <!-- maven-compiler-plugin -->
-        <maven.compiler.target>1.6</maven.compiler.target>
-        <maven.compiler.source>1.6</maven.compiler.source>
+        <maven.compiler.target>1.7</maven.compiler.target>
+        <maven.compiler.source>1.7</maven.compiler.source>
     </properties>
 
     <dependencyManagement>
+
+
+
         <dependencies>
+
+            <dependency>
+                <groupId>org.aub</groupId>
+                <artifactId>ee6-persistence</artifactId>
+                <version>${project.version}</version>
+                <type>jar</type>
+            </dependency>
             <!-- Define the version of the EJB jar so that we don't need 
                 to repeat ourselves in every module -->
             <dependency>
