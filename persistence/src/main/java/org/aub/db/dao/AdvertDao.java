@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface AdvertDao {
 
+    Advert create(Advert entity);
+
     public List<Advert> getAll();
 
 }

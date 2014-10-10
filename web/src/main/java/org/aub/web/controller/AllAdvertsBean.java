@@ -1,5 +1,6 @@
 package org.aub.web.controller;
 
+import org.aub.db.domain.Advert;
 import org.aub.service.AdvertService;
 
 import javax.enterprise.context.RequestScoped;
@@ -14,7 +15,7 @@ public class AllAdvertsBean {
     @Inject
     private AdvertService advertService;
 
-    public List<String> getAllAdverts() {
+    public List<Advert> getAllAdverts() {
         return advertService.getAllAdvertByUrl("Some url");
     }
 }
