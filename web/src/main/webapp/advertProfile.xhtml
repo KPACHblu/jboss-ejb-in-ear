@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+    <h1>Advert Profile</h1>
+    <h:form>
+        <ui:param name="profile" value="#{advertProfileBean.currentAdvertProfile}" />
+        <h:panelGrid columns="2">
+            <h:outputLabel for="name" value="Name:" />
+            <h:inputText id="name" value="#{profile.name}"/>
+
+            <h:outputLabel for="siteUrl" value="Site url:" />
+            <h:inputText id="siteUrl" value="#{profile.siteUrl}"/>
+
+            <h:outputLabel for="advertPattern" value="Pattern for the advert" />
+            <h:inputText id="advertPattern" value="#{profile.advertPattern}"/>
+
+            <h:outputLabel for="searchUrl" value="Search url" />
+            <h:inputText id="searchUrl" value="#{profile.searchUrl}"/>
+
+            <h:outputLabel for="searchUrlPageParam" value="Page param for the search url" />
+            <h:inputText id="searchUrlPageParam" value="#{profile.searchUrlPageParam}"/>
+
+            <h:outputLabel for="searchPagesNumber" value="Number of pages to search" />
+            <h:inputText id="searchPagesNumber" value="#{profile.searchPagesNumber}"/>
+        </h:panelGrid>
+        <h:commandButton value="Save" action="#{advertProfileBean.create(profile)}" />
+    </h:form>
+</f:view>
+</html>

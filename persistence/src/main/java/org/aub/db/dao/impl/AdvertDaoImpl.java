@@ -4,6 +4,7 @@ import com.mongodb.DBCollection;
 import com.mongodb.WriteResult;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
+import org.aub.db.exception.PersistenceException;
 import org.aub.db.util.MongoUtil;
 
 import javax.annotation.PostConstruct;
@@ -25,18 +26,14 @@ public class AdvertDaoImpl implements AdvertDao {
     }
 
     @Override
-    public Advert create(Advert entity) {
+    public Advert create(Advert entity) throws PersistenceException {
         try {
-            WriteResult result = dbCollection.insert(entity.toDBObject());
+            dbCollection.insert(entity.toDBObject());
         } catch (Exception e) {
-            System.out.println(e);
+            //TODO Implement interceptor instead of try-catch
+            throw new PersistenceException(e);
         }
         return entity;
-    }
-
-    @Override
-    public List<Advert> getAll() {
-        return null;
     }
 
 }

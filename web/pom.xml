@@ -21,11 +21,12 @@
             <scope>provided</scope>
         </dependency>
 
-        <dependency>
-            <groupId>org.aub</groupId>
-            <artifactId>ee6-persistence</artifactId>
-            <type>jar</type>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.aub</groupId>-->
+            <!--<artifactId>ee6-persistence</artifactId>-->
+            <!--<type>jar</type>-->
+            <!--<scope></scope>-->
+        <!--</dependency>-->
 
         <!-- Import the CDI API, we use provided scope as the API is included in JBoss EAP 6 -->
         <dependency>

@@ -4,6 +4,8 @@ import org.apache.commons.io.IOUtils;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.dao.impl.AdvertDaoImpl;
 import org.aub.db.domain.Advert;
+import org.aub.db.domain.AdvertProfile;
+import org.aub.db.exception.PersistenceException;
 import org.aub.service.AdvertService;
 
 import javax.ejb.Stateless;
@@ -27,7 +29,7 @@ public class AdvertServiceImpl implements AdvertService {
     private AdvertDao advertDao;
 
     @Override
-    public List<Advert> getAllAdvertByUrl(String url) {
+    public List<Advert> getNewAdverts(AdvertProfile profile) {
         List<Advert> adverts = null;
         //TODO throw errors to the client side
         try {
@@ -55,8 +57,12 @@ public class AdvertServiceImpl implements AdvertService {
             Advert currentAdvert = new Advert();
             currentAdvert.setUrl(matcher.group());
             currentAdvert.setCreatedDate(new Date());
-            advertDao.create(currentAdvert);
-            adverts.add(currentAdvert);
+            try {
+                advertDao.create(currentAdvert);
+                adverts.add(currentAdvert);
+            } catch (PersistenceException e) {
+                e.printStackTrace();
+            }
         }
 
         return adverts;

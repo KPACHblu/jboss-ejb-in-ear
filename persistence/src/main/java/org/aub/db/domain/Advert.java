@@ -7,26 +7,10 @@ import java.util.Date;
 
 public class Advert {
 
-    public static final String COLLECTION_NAME = "adverts";
+    public static final String COLLECTION_NAME = "advert";
 
     private String url;
     private Date createdDate;
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
 
     //TODO use Morphia to avoid these mapping
     public DBObject toDBObject() {
@@ -46,4 +30,21 @@ public class Advert {
 
         return object;
     }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public Date getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Date createdDate) {
+        this.createdDate = createdDate;
+    }
+
 }

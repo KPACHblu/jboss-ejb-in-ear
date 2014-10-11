@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+    <h:head>
+    </h:head>
+    <h1>Home</h1>
+    <h:link value="Create new Advert Profile" outcome="advertProfile" />
+    <h:form>
+        <div>
+            <h:selectOneMenu value="#{homeBean.currentAdvertProfile}">
+                <f:converter binding="#{advertProfileConverter}" />
+                <f:selectItem itemLabel="Choose profile" />
+                <f:selectItems value="#{homeBean.findAll()}" var="selectedAdvert" itemLabel="#{selectedAdvert.name}" itemValue="#{selectedAdvert}" />
+                <f:ajax render="@all" />
+            </h:selectOneMenu>
+            <h:commandButton value="Delete" action="#{homeBean.delete(homeBean.currentAdvertProfile)}" style="margin-left: 10px"/>
+        </div>
+        <div>
+        <h:panelGroup id="advertInfo" rendered="#{not empty homeBean.currentAdvertProfile.id}">
+            <h:panelGrid columns="2">
+                <h:outputLabel for="name" value="Name:" />
+                <h:outputText id="name" value="#{homeBean.currentAdvertProfile.name}"/>
+
+                <h:outputLabel for="siteUrl" value="Site url:" />
+                <h:outputText id="siteUrl" value="#{homeBean.currentAdvertProfile.siteUrl}"/>
+
+                <h:outputLabel for="advertPattern" value="Pattern for the advert" />
+                <h:outputText id="advertPattern" value="#{homeBean.currentAdvertProfile.advertPattern}"/>
+
+                <h:outputLabel for="searchUrl" value="Search url" />
+                <h:outputText id="searchUrl" value="#{homeBean.currentAdvertProfile.searchUrl}"/>
+
+                <h:outputLabel for="searchUrlPageParam" value="Page param for the search url" />
+                <h:outputText id="searchUrlPageParam" value="#{homeBean.currentAdvertProfile.searchUrlPageParam}"/>
+
+                <h:outputLabel for="searchPagesNumber" value="Number of pages to search" />
+                <h:outputText id="searchPagesNumber" value="#{homeBean.currentAdvertProfile.searchPagesNumber}"/>
+            </h:panelGrid>
+
+            <p>
+                New adverts from the last run:
+                <ui:repeat value="#{homeBean.getNewAdverts(homeBean.currentAdvertProfile)}" var="advert">
+                    <br/><a href="#{advert.url}">#{advert.url}</a>
+                </ui:repeat>
+            </p>
+        </h:panelGroup>
+        </div>
+    </h:form>
+</f:view>
+</html>

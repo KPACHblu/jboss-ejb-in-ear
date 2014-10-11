@@ -3,3 +3,4 @@
 /ejb/target
 /persistence/target
 /web/target
+*.iml
