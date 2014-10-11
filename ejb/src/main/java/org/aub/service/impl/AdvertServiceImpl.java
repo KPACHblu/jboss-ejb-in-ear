@@ -50,7 +50,7 @@ public class AdvertServiceImpl implements AdvertService {
 
 
     private List<Advert> getAdvertsBySourcePage(String page) {
-        List<Advert> adverts = new ArrayList<>();
+        List<Advert> adverts = new ArrayList<Advert>();
         Pattern titlePattern = Pattern.compile("http://kharkov.kha.olx.ua/obyavlenie/.*.html");
         Matcher matcher = titlePattern.matcher(page);
         while (matcher.find()) {

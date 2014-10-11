@@ -50,7 +50,7 @@ public class AdvertProfileDaoImpl implements AdvertProfileDao {
 
     @Override
     public List<AdvertProfile> findAll() {
-        List<AdvertProfile> allEntities = new ArrayList<>();
+        List<AdvertProfile> allEntities = new ArrayList<AdvertProfile>();
         DBCursor cursor = dbCollection.find();
         try {
             while (cursor.hasNext()) {

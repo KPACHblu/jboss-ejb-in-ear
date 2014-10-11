@@ -24,7 +24,7 @@ public class MongoUtil {
         try {
             MongoClient mongoClient = (isLocalEnvironment())? getLocalClient() : getOpenshiftClient();
             db = mongoClient.getDB(DB_NAME);
-        } catch (UnknownHostException | MongoException e) {
+        } catch (Exception e) {
             logger.error(e.getMessage());
         }
     }
