@@ -22,8 +22,7 @@ public class MongoUtil {
     @PostConstruct
     private void init() {
         try {
-            MongoClient mongoClient = (isLocalEnvironment())? getLocalClient() : getOpenshiftClient();
-            db = mongoClient.getDB(DB_NAME);
+            db = (isLocalEnvironment())? getLocalClient() : getOpenShiftClient();
         } catch (Exception e) {
             logger.error(e.getMessage());
         }
@@ -41,11 +40,11 @@ public class MongoUtil {
         return  isLocalEnvironment;
     }
 
-    private MongoClient getLocalClient() throws UnknownHostException {
-        return new MongoClient(HOST, PORT);
+    private DB getLocalClient() throws UnknownHostException {
+        return new MongoClient(HOST, PORT).getDB(DB_NAME);
     }
 
-    private MongoClient getOpenshiftClient() throws UnknownHostException {
+    private DB getOpenShiftClient() throws UnknownHostException {
         String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
         String portRaw = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
         int port = Integer.decode(portRaw);
@@ -54,8 +53,9 @@ public class MongoUtil {
         String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
 
         MongoCredential credential = MongoCredential.createMongoCRCredential(user, db, password.toCharArray());
+        MongoClient mongoClient = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
 
-        return new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
+        return mongoClient.getDB(db);
     }
 
 
