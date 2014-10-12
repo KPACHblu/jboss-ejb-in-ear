@@ -11,6 +11,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 //TODO Get rid of session scope
@@ -26,7 +27,11 @@ public class HomeBean implements Serializable{
     private AdvertProfileService advertProfileService;
 
     public List<Advert> getNewAdverts(AdvertProfile profile) {
-        return advertService.getNewAdverts(profile);
+        if (profile == null || profile.getId() == null) {
+            return new ArrayList<Advert>();
+        } else {
+            return advertService.getNewAdverts(profile);
+        }
     }
 
     public List<AdvertProfile> findAll() {

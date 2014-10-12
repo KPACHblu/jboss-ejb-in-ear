@@ -23,6 +23,7 @@
             <version>2.12.3</version>
         </dependency>
 
+        <!--TODO Add configuration file for log4j-->
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

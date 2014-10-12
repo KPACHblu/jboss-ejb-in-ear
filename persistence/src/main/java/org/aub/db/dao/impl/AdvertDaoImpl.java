@@ -1,7 +1,6 @@
 package org.aub.db.dao.impl;
 
 import com.mongodb.DBCollection;
-import com.mongodb.WriteResult;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
 import org.aub.db.exception.PersistenceException;
@@ -10,7 +9,6 @@ import org.aub.db.util.MongoUtil;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
-import java.util.List;
 
 @RequestScoped
 public class AdvertDaoImpl implements AdvertDao {
@@ -34,6 +32,11 @@ public class AdvertDaoImpl implements AdvertDao {
             throw new PersistenceException(e);
         }
         return entity;
+    }
+
+    @Override
+    public void delete(Advert entity) throws PersistenceException {
+        dbCollection.remove(entity.toDBObject());
     }
 
 }

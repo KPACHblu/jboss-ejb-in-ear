@@ -1,5 +1,6 @@
 package org.aub.service.impl;
 
+import org.aub.db.dao.AdvertDao;
 import org.aub.db.dao.AdvertProfileDao;
 import org.aub.db.domain.AdvertProfile;
 import org.aub.db.exception.PersistenceException;
@@ -8,8 +9,9 @@ import org.aub.service.AdvertProfileService;
 import javax.inject.Inject;
 import java.util.List;
 
-public class AdvertProfileImpl implements AdvertProfileService {
-
+public class AdvertProfileServiceImpl implements AdvertProfileService {
+    @Inject
+    private AdvertDao advertDao;
     @Inject
     private AdvertProfileDao advertProfileDao;
 
