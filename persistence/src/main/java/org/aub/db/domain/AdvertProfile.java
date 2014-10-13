@@ -2,14 +2,15 @@ package org.aub.db.domain;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
+import org.bson.types.ObjectId;
 
 import java.io.Serializable;
 
-public class AdvertProfile implements Serializable{
+public class AdvertProfile implements Serializable {
 
     public static final String COLLECTION_NAME = "advert_profile";
 
-    private String id;
+    private ObjectId id;
     private String name;
     private String siteUrl;
     private String advertPattern;
@@ -20,6 +21,7 @@ public class AdvertProfile implements Serializable{
     public DBObject toDBObject() {
         BasicDBObject document = new BasicDBObject();
 
+        document.put("_id", (id == null) ? new ObjectId() : id);
         document.put("name", name);
         document.put("siteUrl", siteUrl);
         document.put("advertPattern", advertPattern);
@@ -33,7 +35,7 @@ public class AdvertProfile implements Serializable{
     public static AdvertProfile fromDBObject(DBObject document) {
         AdvertProfile object = new AdvertProfile();
 
-        object.setId(document.get("_id").toString());
+        object.setId((ObjectId) document.get("_id"));
         object.setName((String) document.get("name"));
         object.setSiteUrl((String) document.get("siteUrl"));
         object.setAdvertPattern((String) document.get("advertPattern"));
@@ -44,13 +46,12 @@ public class AdvertProfile implements Serializable{
         return object;
     }
 
-    //TODO Currently ID field doesn't mapped.
-    public void setId(String id) {
-        this.id = id;
+    public ObjectId getId() {
+        return id;
     }
 
-    public String getId() {
-        return id;
+    public void setId(ObjectId id) {
+        this.id = id;
     }
 
     public String getName() {

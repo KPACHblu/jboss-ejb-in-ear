@@ -24,7 +24,7 @@ public class AdvertProfileConverter implements Converter {
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object object) {
         String result = null;
         if (object != null && object instanceof AdvertProfile) {
-            result = ((AdvertProfile) object).getId();
+            result = ((AdvertProfile) object).getId().toString();
         }
         return result;
     }
