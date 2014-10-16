@@ -1,5 +1,6 @@
 package org.aub.db.dao.impl;
 
+import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
@@ -21,6 +22,7 @@ public class AdvertDaoImpl implements AdvertDao {
     @PostConstruct
     private void init() {
         dbCollection = mongoUtil.getDb().getCollection(Advert.COLLECTION_NAME);
+        dbCollection.createIndex(new BasicDBObject("url", 1), new BasicDBObject("unique" , Boolean.TRUE));
     }
 
     @Override

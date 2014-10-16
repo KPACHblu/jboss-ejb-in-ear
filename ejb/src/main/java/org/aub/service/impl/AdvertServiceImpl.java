@@ -55,6 +55,7 @@ public class AdvertServiceImpl implements AdvertService {
         Matcher matcher = titlePattern.matcher(page);
         while (matcher.find()) {
             Advert currentAdvert = new Advert();
+            currentAdvert.setAdvertProfileId(profile.getId());
             currentAdvert.setUrl(matcher.group());
             currentAdvert.setCreatedDate(new Date());
             try {
