@@ -13,7 +13,7 @@ import java.util.Arrays;
 public class MongoUtil {
 
     private final static Logger logger = LoggerFactory.getLogger(MongoUtil.class);
-
+    //TODO put properties into file
     private static final int PORT = 27017;
     private static final String HOST = "localhost";
     private static final String DB_NAME = "ee6";
