@@ -1,30 +1,25 @@
 package org.aub.db.util;
 
-import com.mongodb.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.mongodb.DB;
+import org.aub.db.odm.util.Persistence;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import java.net.UnknownHostException;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 @ApplicationScoped
 public class MongoUtil {
 
-    private final static Logger logger = LoggerFactory.getLogger(MongoUtil.class);
-    //TODO put properties into file
-    private static final int PORT = 27017;
-    private static final String HOST = "localhost";
-    private static final String DB_NAME = "ee6";
     private DB db = null;
 
     @PostConstruct
     private void init() {
         try {
-            db = (isLocalEnvironment())? getLocalClient() : getOpenShiftClient();
+            db = (isLocalEnvironment()) ? Persistence.getDB() : Persistence.getDB(getOpenShiftConfig());
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 
@@ -37,26 +32,25 @@ public class MongoUtil {
         if (System.getenv("OPENSHIFT_MONGODB_DB_HOST") != null) {
             isLocalEnvironment = false;
         }
-        return  isLocalEnvironment;
+        return isLocalEnvironment;
     }
 
-    private DB getLocalClient() throws UnknownHostException {
-        return new MongoClient(HOST, PORT).getDB(DB_NAME);
-    }
-
-    private DB getOpenShiftClient() throws UnknownHostException {
+    private Map<String, String> getOpenShiftConfig() throws UnknownHostException {
+        Map<String, String> props = new HashMap<String, String>();
         String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
         String portRaw = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
-        int port = Integer.decode(portRaw);
-        String db = System.getenv("OPENSHIFT_APP_NAME");
+        Integer port = Integer.decode(portRaw);
+        String dbName = System.getenv("OPENSHIFT_APP_NAME");
         String user = System.getenv("OPENSHIFT_MONGODB_DB_USERNAME");
         String password = System.getenv("OPENSHIFT_MONGODB_DB_PASSWORD");
 
-        MongoCredential credential = MongoCredential.createMongoCRCredential(user, db, password.toCharArray());
-        MongoClient mongoClient = new MongoClient(new ServerAddress(host, port), Arrays.asList(credential));
+        props.put(Persistence.HOST, host);
+        props.put(Persistence.PORT, port.toString());
+        props.put(Persistence.DB_NAME, dbName);
+        props.put(Persistence.USER_NAME, user);
+        props.put(Persistence.USER_PASSWORD, password);
 
-        return mongoClient.getDB(db);
+        return props;
     }
-
 
 }

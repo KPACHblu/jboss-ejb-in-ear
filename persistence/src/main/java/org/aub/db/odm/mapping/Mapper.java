@@ -11,10 +11,8 @@ import org.aub.db.odm.util.ReflectionUtils;
 import java.lang.reflect.Field;
 import java.util.List;
 
+//TODO Move to other project
 public class Mapper {
-    public static void main(String[] args) {
-        System.out.println(getEntityTableName(Advert.class));
-    }
 
     public static DBObject toDbObject(Object object) {
         DBObject result = new BasicDBObject();

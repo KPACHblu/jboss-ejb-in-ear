@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mongodb-configuration>
+    <db-factory>
+        <property name="mongodb.odm.connection.host">localhost</property>
+        <property name="mongodb.odm.connection.port">27017</property>
+        <property name="mongodb.odm.connection.db.name">ee6</property>
+    </db-factory>
+</mongodb-configuration>

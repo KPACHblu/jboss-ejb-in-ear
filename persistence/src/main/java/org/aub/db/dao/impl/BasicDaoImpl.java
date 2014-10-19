@@ -16,7 +16,12 @@ import java.util.List;
 
 public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> {
 
-    public abstract DBCollection getCollection();
+    @Override
+    public DBCollection getCollection() {
+        ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+        Class<T> objectType = (Class<T>) type.getActualTypeArguments()[0];
+        return getDB().getCollection(Mapper.getEntityTableName(objectType));
+    }
 
     public <T> T toEntity(DBObject document) {
         ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
@@ -41,6 +46,7 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public T update(T entity) throws PersistenceException {
+        //TODO Remove entity.getId()
         getCollection().update(new BasicDBObject("_id", entity.getId()), toDBObject(entity));
         return entity;
     }
@@ -66,6 +72,8 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public T findById(String id) {
+        //TODO Remove hardcoded ID field
         return toEntity(getCollection().findOne(new BasicDBObject("_id", new ObjectId(id))));
     }
+
 }

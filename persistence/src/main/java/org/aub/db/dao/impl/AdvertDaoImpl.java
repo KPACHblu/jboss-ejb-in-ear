@@ -1,6 +1,7 @@
 package org.aub.db.dao.impl;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
@@ -14,20 +15,16 @@ import javax.inject.Inject;
 @RequestScoped
 public class AdvertDaoImpl extends BasicDaoImpl<Advert> implements AdvertDao {
 
-    private DBCollection dbCollection;
-
     @Inject
     private MongoUtil mongoUtil;
 
     @PostConstruct
     private void init() {
-        dbCollection = mongoUtil.getDb().getCollection(Mapper.getEntityTableName(Advert.class));
-        dbCollection.createIndex(new BasicDBObject("url", 1), new BasicDBObject("unique", Boolean.TRUE));
+        getCollection().createIndex(new BasicDBObject("url", 1), new BasicDBObject("unique", Boolean.TRUE));
     }
 
     @Override
-    public DBCollection getCollection() {
-        return dbCollection;
+    public DB getDB() {
+        return mongoUtil.getDb();
     }
-
 }

@@ -1,10 +1,16 @@
 package org.aub.db.dao;
 
+import com.mongodb.DB;
+import com.mongodb.DBCollection;
 import org.aub.db.exception.PersistenceException;
 
 import java.util.List;
 
 public interface BasicDao<T> {
+
+    DB getDB();
+
+    DBCollection getCollection();
 
     T create(T entity) throws PersistenceException;
 
