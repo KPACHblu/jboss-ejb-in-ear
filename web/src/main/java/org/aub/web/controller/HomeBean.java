@@ -28,7 +28,7 @@ public class HomeBean implements Serializable{
 
     public List<Advert> getNewAdverts(AdvertProfile profile) {
         if (profile == null || profile.getId() == null) {
-            return new ArrayList<Advert>();
+            return new ArrayList<>();
         } else {
             return advertService.getNewAdverts(profile);
         }

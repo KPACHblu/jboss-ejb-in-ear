@@ -58,7 +58,7 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public List<T> findAll() {
-        List<T> allEntities = new ArrayList<T>();
+        List<T> allEntities = new ArrayList<>();
         DBCursor cursor = getCollection().find();
         try {
             while (cursor.hasNext()) {

@@ -27,7 +27,7 @@ public class AdvertServiceImpl implements AdvertService {
 
     @Override
     public List<Advert> getNewAdverts(AdvertProfile profile) {
-        List<Advert> adverts = new ArrayList<Advert>();
+        List<Advert> adverts = new ArrayList<>();
         //TODO throw errors to the client side
         long searchPagesNumber = profile.getSearchPagesNumber();
         String searchUrl = profile.getSearchUrl();
@@ -50,7 +50,7 @@ public class AdvertServiceImpl implements AdvertService {
 
 
     private List<Advert> getAdvertsBySourcePage(String page, AdvertProfile profile) {
-        List<Advert> adverts = new ArrayList<Advert>();
+        List<Advert> adverts = new ArrayList<>();
         Pattern titlePattern = Pattern.compile(profile.getAdvertPattern());
         Matcher matcher = titlePattern.matcher(page);
         while (matcher.find()) {

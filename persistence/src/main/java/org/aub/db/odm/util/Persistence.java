@@ -78,7 +78,7 @@ public class Persistence {
     }
 
     private static Map<String, String> getProperties(URL configURL) {
-        Map<String, String> properties = new HashMap<String, String>();
+        Map<String, String> properties = new HashMap<>();
         try {
             InputStream is = null;
             if (configURL != null) {

@@ -36,7 +36,7 @@ public class MongoUtil {
     }
 
     private Map<String, String> getOpenShiftConfig() throws UnknownHostException {
-        Map<String, String> props = new HashMap<String, String>();
+        Map<String, String> props = new HashMap<>();
         String host = System.getenv("OPENSHIFT_MONGODB_DB_HOST");
         String portRaw = System.getenv("OPENSHIFT_MONGODB_DB_PORT");
         Integer port = Integer.decode(portRaw);

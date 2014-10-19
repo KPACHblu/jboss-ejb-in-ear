@@ -8,7 +8,7 @@ import java.util.List;
 public class ReflectionUtils {
 
     public static List<Field> getAllValidFields(Class clazz) {
-        List<Field> result = new ArrayList<Field>();
+        List<Field> result = new ArrayList<>();
         return getAllValidFieldsRec(clazz, result);
     }
 
