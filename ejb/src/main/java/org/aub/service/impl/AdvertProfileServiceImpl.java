@@ -5,6 +5,7 @@ import org.aub.db.dao.AdvertProfileDao;
 import org.aub.db.domain.AdvertProfile;
 import org.aub.db.exception.PersistenceException;
 import org.aub.service.AdvertProfileService;
+import org.bson.types.ObjectId;
 
 import javax.inject.Inject;
 import java.util.List;
@@ -37,8 +38,8 @@ public class AdvertProfileServiceImpl implements AdvertProfileService {
     }
 
     @Override
-    public AdvertProfile findById(String id) {
-        return advertProfileDao.findById(id);
+    public AdvertProfile findById(Object id) {
+        return advertProfileDao.findById(new ObjectId(id.toString()));
     }
 
 }

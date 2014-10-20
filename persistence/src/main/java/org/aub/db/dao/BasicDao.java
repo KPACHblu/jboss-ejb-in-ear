@@ -25,5 +25,5 @@ public interface BasicDao<T> {
 
     List<T> findAll();
 
-    T findById(String id);
+    T findById(Object id);
 }

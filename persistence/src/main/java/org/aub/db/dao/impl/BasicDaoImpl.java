@@ -5,18 +5,16 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import org.aub.db.dao.BasicDao;
-import org.aub.db.domain.BaseEntity;
 import org.aub.db.exception.PersistenceException;
 import org.aub.db.odm.mapping.IdMapper;
 import org.aub.db.odm.mapping.ObjectMapper;
 import org.aub.db.odm.mapping.TableMapper;
-import org.bson.types.ObjectId;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> {
+public abstract class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public DBCollection getCollection() {
@@ -70,9 +68,11 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
     }
 
     @Override
-    public T findById(String id) {
-        //TODO Remove new ObjectId part
-        return toEntity(getCollection().findOne(new BasicDBObject(IdMapper.getEntityIdFieldName(getObjectClass()), new ObjectId(id))));
+    public T findById(Object id) {
+        String fieldName = IdMapper.getEntityIdFieldName(getObjectClass());
+        DBObject objectToFind = new BasicDBObject(fieldName, id);
+        DBObject resultObject = getCollection().findOne(objectToFind);
+        return toEntity(resultObject);
     }
 
     private Class<T> getObjectClass() {

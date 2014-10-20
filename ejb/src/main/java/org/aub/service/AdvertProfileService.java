@@ -16,5 +16,5 @@ public interface AdvertProfileService extends Serializable {
 
     List<AdvertProfile> findAll();
 
-    AdvertProfile findById(String id);
+    AdvertProfile findById(Object id);
 }
