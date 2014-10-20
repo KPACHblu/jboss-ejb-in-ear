@@ -2,11 +2,16 @@ package org.aub.db.dao;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
+import com.mongodb.DBObject;
 import org.aub.db.exception.PersistenceException;
 
 import java.util.List;
 
 public interface BasicDao<T> {
+
+    T toEntity(DBObject document);
+
+    DBObject toDBObject(T entity);
 
     DB getDB();
 

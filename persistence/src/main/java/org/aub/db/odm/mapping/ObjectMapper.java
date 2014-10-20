@@ -2,17 +2,14 @@ package org.aub.db.odm.mapping;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import org.apache.commons.lang3.StringUtils;
-import org.aub.db.domain.Advert;
 import org.aub.db.odm.annotation.Column;
-import org.aub.db.odm.annotation.Table;
 import org.aub.db.odm.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
 //TODO Move to other project
-public class Mapper {
+public class ObjectMapper {
 
     public static DBObject toDbObject(Object object) {
         DBObject result = new BasicDBObject();
@@ -33,17 +30,6 @@ public class Mapper {
             setFieldValue(field, object, dbObject);
         }
         return object;
-    }
-
-    public static <T> String getEntityTableName(Class<T> objectClass) {
-        String tableName;
-        Table tableAnnotation = objectClass.getAnnotation(Table.class);
-        if (tableAnnotation != null && StringUtils.isNotBlank(tableAnnotation.name())) {
-            tableName = tableAnnotation.name();
-        } else {
-            tableName = objectClass.getSimpleName();
-        }
-        return tableName;
     }
 
     private static void setFieldValue(Field field, Object object, DBObject dbObject) {

@@ -4,11 +4,13 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.aub.db.odm.annotation.Column;
+import org.aub.db.odm.annotation.Id;
 import org.bson.types.ObjectId;
 
 public class BaseEntity {
 
-    @Column(name="_id")
+    @Id
+    @Column(name = "_id")
     private ObjectId id;
 
     public ObjectId getId() {

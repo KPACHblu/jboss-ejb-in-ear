@@ -7,7 +7,9 @@ import com.mongodb.DBObject;
 import org.aub.db.dao.BasicDao;
 import org.aub.db.domain.BaseEntity;
 import org.aub.db.exception.PersistenceException;
-import org.aub.db.odm.mapping.Mapper;
+import org.aub.db.odm.mapping.IdMapper;
+import org.aub.db.odm.mapping.ObjectMapper;
+import org.aub.db.odm.mapping.TableMapper;
 import org.bson.types.ObjectId;
 
 import java.lang.reflect.ParameterizedType;
@@ -18,19 +20,17 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public DBCollection getCollection() {
-        ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
-        Class<T> objectType = (Class<T>) type.getActualTypeArguments()[0];
-        return getDB().getCollection(Mapper.getEntityTableName(objectType));
+        return getDB().getCollection(TableMapper.getEntityTableName(getObjectClass()));
     }
 
-    public <T> T toEntity(DBObject document) {
-        ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
-        Class<T> objectType = (Class<T>) type.getActualTypeArguments()[0];
-        return Mapper.toEntity(document, objectType);
+    @Override
+    public T toEntity(DBObject document) {
+        return ObjectMapper.toEntity(document, getObjectClass());
     }
 
+    @Override
     public DBObject toDBObject(T entity) {
-        return Mapper.toDbObject(entity);
+        return ObjectMapper.toDbObject(entity);
     }
 
     @Override
@@ -46,8 +46,7 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public T update(T entity) throws PersistenceException {
-        //TODO Remove entity.getId()
-        getCollection().update(new BasicDBObject("_id", entity.getId()), toDBObject(entity));
+        getCollection().update(new BasicDBObject(IdMapper.getEntityIdFieldName(getObjectClass()), IdMapper.getEntityIdFieldValue(entity)), toDBObject(entity));
         return entity;
     }
 
@@ -72,8 +71,14 @@ public abstract class BasicDaoImpl<T extends BaseEntity> implements BasicDao<T> 
 
     @Override
     public T findById(String id) {
-        //TODO Remove hardcoded ID field
-        return toEntity(getCollection().findOne(new BasicDBObject("_id", new ObjectId(id))));
+        //TODO Remove new ObjectId part
+        return toEntity(getCollection().findOne(new BasicDBObject(IdMapper.getEntityIdFieldName(getObjectClass()), new ObjectId(id))));
+    }
+
+    private Class<T> getObjectClass() {
+        ParameterizedType type = (ParameterizedType) getClass().getGenericSuperclass();
+        Class<T> objectType = (Class<T>) type.getActualTypeArguments()[0];
+        return objectType;
     }
 
 }
