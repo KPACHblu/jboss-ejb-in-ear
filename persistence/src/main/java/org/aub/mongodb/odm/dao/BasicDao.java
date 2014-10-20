@@ -1,9 +1,9 @@
-package org.aub.db.dao;
+package org.aub.mongodb.odm.dao;
 
 import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 
 import java.util.List;
 

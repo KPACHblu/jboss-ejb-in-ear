@@ -1,7 +1,7 @@
 package org.aub.db.util;
 
 import com.mongodb.DB;
-import org.aub.db.odm.util.Persistence;
+import org.aub.mongodb.odm.util.Persistence;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;

@@ -1,7 +1,7 @@
-package org.aub.db.odm.mapping;
+package org.aub.mongodb.odm.mapping;
 
 import org.apache.commons.lang3.StringUtils;
-import org.aub.db.odm.annotation.Table;
+import org.aub.mongodb.odm.annotation.Table;
 
 public class TableMapper {
 

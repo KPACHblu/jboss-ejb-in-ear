@@ -1,14 +1,15 @@
-package org.aub.db.dao.impl;
+package org.aub.mongodb.odm.dao.impl;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
-import org.aub.db.dao.BasicDao;
-import org.aub.db.exception.PersistenceException;
-import org.aub.db.odm.mapping.IdMapper;
-import org.aub.db.odm.mapping.ObjectMapper;
-import org.aub.db.odm.mapping.TableMapper;
+import org.aub.mongodb.odm.dao.BasicDao;
+import org.aub.mongodb.odm.exception.PersistenceException;
+import org.aub.mongodb.odm.mapping.IdMapper;
+import org.aub.mongodb.odm.mapping.ObjectMapper;
+import org.aub.mongodb.odm.mapping.TableMapper;
+import org.aub.mongodb.odm.util.Persistence;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
@@ -36,7 +37,6 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
         try {
             getCollection().insert(toDBObject(entity));
         } catch (Exception e) {
-            //TODO Implement interceptor instead of try-catch
             throw new PersistenceException(e);
         }
         return entity;
@@ -44,13 +44,21 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
 
     @Override
     public T update(T entity) throws PersistenceException {
-        getCollection().update(new BasicDBObject(IdMapper.getEntityIdFieldName(getObjectClass()), IdMapper.getEntityIdFieldValue(entity)), toDBObject(entity));
+        try {
+            getCollection().update(new BasicDBObject(IdMapper.getEntityIdFieldName(getObjectClass()), IdMapper.getEntityIdFieldValue(entity)), toDBObject(entity));
+        } catch (Exception e) {
+            throw new PersistenceException(e);
+        }
         return entity;
     }
 
     @Override
     public void delete(T entity) throws PersistenceException {
-        getCollection().remove(toDBObject(entity));
+        try {
+            getCollection().remove(toDBObject(entity));
+        } catch (Exception e) {
+            throw new PersistenceException(e);
+        }
     }
 
     @Override
@@ -70,8 +78,7 @@ public abstract class BasicDaoImpl<T> implements BasicDao<T> {
     @Override
     public T findById(Object id) {
         String fieldName = IdMapper.getEntityIdFieldName(getObjectClass());
-        DBObject objectToFind = new BasicDBObject(fieldName, id);
-        DBObject resultObject = getCollection().findOne(objectToFind);
+        DBObject resultObject = getCollection().findOne(new BasicDBObject(fieldName, id));
         return toEntity(resultObject);
     }
 

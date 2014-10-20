@@ -1,4 +1,4 @@
-package org.aub.db.odm.util;
+package org.aub.mongodb.odm.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;

@@ -1,7 +1,7 @@
 package org.aub.service;
 
 import org.aub.db.domain.AdvertProfile;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 
 import java.io.Serializable;
 import java.util.List;

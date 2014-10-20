@@ -1,14 +1,13 @@
-package org.aub.db.odm.mapping;
+package org.aub.mongodb.odm.mapping;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBObject;
-import org.aub.db.odm.annotation.Column;
-import org.aub.db.odm.util.ReflectionUtils;
+import org.aub.mongodb.odm.annotation.Column;
+import org.aub.mongodb.odm.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 import java.util.List;
 
-//TODO Move to other project
 public class ObjectMapper {
 
     public static DBObject toDbObject(Object object) {

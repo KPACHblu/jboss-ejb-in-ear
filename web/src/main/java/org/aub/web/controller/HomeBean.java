@@ -2,11 +2,10 @@ package org.aub.web.controller;
 
 import org.aub.db.domain.Advert;
 import org.aub.db.domain.AdvertProfile;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 import org.aub.service.AdvertProfileService;
 import org.aub.service.AdvertService;
 
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;

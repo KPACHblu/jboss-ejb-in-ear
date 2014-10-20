@@ -1,4 +1,4 @@
-package org.aub.db.odm.util;
+package org.aub.mongodb.odm.util;
 
 import com.mongodb.DB;
 import com.mongodb.MongoClient;

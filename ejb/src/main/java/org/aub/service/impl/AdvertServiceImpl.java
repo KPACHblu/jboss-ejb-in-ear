@@ -4,7 +4,7 @@ import org.apache.commons.io.IOUtils;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
 import org.aub.db.domain.AdvertProfile;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 import org.aub.service.AdvertService;
 
 import javax.ejb.Stateless;

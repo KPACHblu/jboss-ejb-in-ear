@@ -1,9 +1,9 @@
-package org.aub.db.odm.mapping;
+package org.aub.mongodb.odm.mapping;
 
 import org.apache.commons.lang3.StringUtils;
-import org.aub.db.odm.annotation.Column;
-import org.aub.db.odm.annotation.Id;
-import org.aub.db.odm.util.ReflectionUtils;
+import org.aub.mongodb.odm.annotation.Column;
+import org.aub.mongodb.odm.annotation.Id;
+import org.aub.mongodb.odm.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
 

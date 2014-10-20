@@ -1,4 +1,4 @@
-package org.aub.db.odm.annotation;
+package org.aub.mongodb.odm.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

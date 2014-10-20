@@ -5,6 +5,7 @@ import com.mongodb.DB;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.domain.Advert;
 import org.aub.db.util.MongoUtil;
+import org.aub.mongodb.odm.dao.impl.BasicDaoImpl;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;

@@ -1,6 +1,7 @@
-package org.aub.db.exception;
+package org.aub.mongodb.odm.exception;
 
 public class PersistenceException extends Exception {
+
     public PersistenceException() {
     }
 

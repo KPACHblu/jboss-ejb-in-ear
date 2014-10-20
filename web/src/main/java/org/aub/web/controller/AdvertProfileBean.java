@@ -1,7 +1,7 @@
 package org.aub.web.controller;
 
 import org.aub.db.domain.AdvertProfile;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 import org.aub.service.AdvertProfileService;
 
 import javax.enterprise.context.RequestScoped;

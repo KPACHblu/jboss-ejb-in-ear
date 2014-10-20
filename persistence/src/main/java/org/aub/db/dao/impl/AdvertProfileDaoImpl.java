@@ -4,6 +4,7 @@ import com.mongodb.DB;
 import org.aub.db.dao.AdvertProfileDao;
 import org.aub.db.domain.AdvertProfile;
 import org.aub.db.util.MongoUtil;
+import org.aub.mongodb.odm.dao.impl.BasicDaoImpl;
 
 import javax.inject.Inject;
 

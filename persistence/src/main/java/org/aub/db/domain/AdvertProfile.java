@@ -1,7 +1,7 @@
 package org.aub.db.domain;
 
-import org.aub.db.odm.annotation.Column;
-import org.aub.db.odm.annotation.Table;
+import org.aub.mongodb.odm.annotation.Column;
+import org.aub.mongodb.odm.annotation.Table;
 
 import java.io.Serializable;
 

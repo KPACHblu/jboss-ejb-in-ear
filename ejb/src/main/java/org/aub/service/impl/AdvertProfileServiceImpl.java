@@ -3,7 +3,7 @@ package org.aub.service.impl;
 import org.aub.db.dao.AdvertDao;
 import org.aub.db.dao.AdvertProfileDao;
 import org.aub.db.domain.AdvertProfile;
-import org.aub.db.exception.PersistenceException;
+import org.aub.mongodb.odm.exception.PersistenceException;
 import org.aub.service.AdvertProfileService;
 import org.bson.types.ObjectId;
 
