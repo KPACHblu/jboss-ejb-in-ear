@@ -4,11 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 <f:view>
     <h:head>
     </h:head>
     <h1>Home</h1>
+
     <h:link value="Create new Advert Profile" outcome="advertProfile" />
     <h:form>
         <div>
@@ -16,9 +18,9 @@
                 <f:converter binding="#{advertProfileConverter}" />
                 <f:selectItem itemLabel="Choose profile" />
                 <f:selectItems value="#{homeBean.findAll()}" var="selectedAdvert" itemLabel="#{selectedAdvert.name}" itemValue="#{selectedAdvert}" />
-                <f:ajax render="@all" />
             </h:selectOneMenu>
-            <h:commandButton value="Delete" action="#{homeBean.delete(homeBean.currentAdvertProfile)}" style="margin-left: 10px"/>
+            <h:commandButton value="Search" action="#{homeBean.search(homeBean.currentAdvertProfile)}" />
+            <h:commandButton value="Edit" action="#{homeBean.edit(homeBean.currentAdvertProfile)}" style="margin-left: 10px"/>
         </div>
         <div>
         <h:panelGroup id="advertInfo" rendered="#{not empty homeBean.currentAdvertProfile.id}">
@@ -44,7 +46,7 @@
 
             <p>
                 New adverts from the last run:
-                <ui:repeat value="#{homeBean.getNewAdverts(homeBean.currentAdvertProfile)}" var="advert">
+                <ui:repeat value="#{homeBean.newAdverts}" var="advert">
                     <br/><a href="#{advert.url}">#{advert.url}</a>
                 </ui:repeat>
             </p>

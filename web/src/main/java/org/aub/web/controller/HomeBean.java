@@ -7,11 +7,13 @@ import org.aub.service.AdvertProfileService;
 import org.aub.service.AdvertService;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 //TODO Get rid of session scope
 @Named
@@ -19,26 +21,29 @@ import java.util.List;
 public class HomeBean implements Serializable{
 
     private AdvertProfile currentAdvertProfile;
+    private List<Advert> newAdverts = new ArrayList<>();
 
     @Inject
     private AdvertService advertService;
     @Inject
     private AdvertProfileService advertProfileService;
 
-    public List<Advert> getNewAdverts(AdvertProfile profile) {
-        if (profile == null || profile.getId() == null) {
-            return new ArrayList<>();
-        } else {
-            return advertService.getNewAdverts(profile);
-        }
-    }
 
     public List<AdvertProfile> findAll() {
         return advertProfileService.findAll();
     }
 
-    public void delete(AdvertProfile entity) throws PersistenceException {
-        advertProfileService.delete(entity);
+    public void search(AdvertProfile entity) {
+        if (entity != null || entity.getId() != null) {
+            setCurrentAdvertProfile(entity);
+            setNewAdverts(advertService.getNewAdverts(getCurrentAdvertProfile()));
+        }
+    }
+
+    public String edit(AdvertProfile entity) throws PersistenceException {
+        Map<String, Object> sessionMap = FacesContext.getCurrentInstance().getExternalContext().getSessionMap();
+        sessionMap.put("advertProfile", entity);
+        return "advertProfile";
     }
 
     public AdvertProfile getCurrentAdvertProfile() {
@@ -47,5 +52,13 @@ public class HomeBean implements Serializable{
 
     public void setCurrentAdvertProfile(AdvertProfile currentAdvertProfile) {
         this.currentAdvertProfile = currentAdvertProfile;
+    }
+
+    public List<Advert> getNewAdverts() {
+        return newAdverts;
+    }
+
+    public void setNewAdverts(List<Advert> newAdverts) {
+        this.newAdverts = newAdverts;
     }
 }

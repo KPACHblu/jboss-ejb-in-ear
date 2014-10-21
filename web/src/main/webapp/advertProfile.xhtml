@@ -5,6 +5,9 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:metadata>
+    <f:viewParam name="profileId" />
+</f:metadata>
 <f:view>
     <h1>Advert Profile</h1>
     <h:form>
@@ -28,7 +31,8 @@
             <h:outputLabel for="searchPagesNumber" value="Number of pages to search" />
             <h:inputText id="searchPagesNumber" value="#{profile.searchPagesNumber}"/>
         </h:panelGrid>
-        <h:commandButton value="Save" action="#{advertProfileBean.create(profile)}" />
+        <h:commandButton value="Save" action="#{advertProfileBean.save(profile)}" />
+        <h:commandButton value="Delete" action="#{advertProfileBean.delete(profile)}" rendered="#{not empty advertProfileBean.currentAdvertProfile.id}"/>
     </h:form>
 </f:view>
 </html>
