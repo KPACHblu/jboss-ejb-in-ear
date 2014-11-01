@@ -21,6 +21,7 @@ import java.util.regex.Pattern;
 public class AdvertServiceImpl implements AdvertService {
 
     private static final String WEB_SITE_ENCODING = "UTF-8";
+    private static final String SEARCH_URL_PAGE_PARAM = "[page]";
 
     @Inject
     private AdvertDao advertDao;
@@ -31,10 +32,9 @@ public class AdvertServiceImpl implements AdvertService {
         //TODO throw errors to the client side
         long searchPagesNumber = profile.getSearchPagesNumber();
         String searchUrl = profile.getSearchUrl();
-        String searchUrlPageParam = profile.getSearchUrlPageParam();
         for (long i = 1; i <= searchPagesNumber; i++) {
             try {
-                String url = searchUrl + "&" + searchUrlPageParam + "=" + i;
+                String url = searchUrl.replace(SEARCH_URL_PAGE_PARAM, String.valueOf(i));
                 InputStream in = new URL(url).openStream();
                 try {
                     String page = IOUtils.toString(in, WEB_SITE_ENCODING);

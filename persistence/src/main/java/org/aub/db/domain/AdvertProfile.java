@@ -15,8 +15,6 @@ public class AdvertProfile extends BaseEntity implements Serializable {
     private String advertPattern;
     @Column(name = "search_url")
     private String searchUrl;
-    @Column(name = "search_url_page_param")
-    private String searchUrlPageParam;
     @Column(name = "search_pages_number")
     private Long searchPagesNumber;
 
@@ -50,14 +48,6 @@ public class AdvertProfile extends BaseEntity implements Serializable {
 
     public void setSearchUrl(String searchUrl) {
         this.searchUrl = searchUrl;
-    }
-
-    public String getSearchUrlPageParam() {
-        return searchUrlPageParam;
-    }
-
-    public void setSearchUrlPageParam(String searchUrlPageParam) {
-        this.searchUrlPageParam = searchUrlPageParam;
     }
 
     public Long getSearchPagesNumber() {
