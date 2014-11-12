@@ -56,7 +56,11 @@ public class AdvertServiceImpl implements AdvertService {
         while (matcher.find()) {
             Advert currentAdvert = new Advert();
             currentAdvert.setAdvertProfileId(profile.getId());
-            currentAdvert.setUrl(matcher.group());
+            String adUrl = matcher.group();
+            if(!adUrl.contains(profile.getSiteUrl())) {
+                adUrl = profile.getSiteUrl() + adUrl;
+            }
+            currentAdvert.setUrl(adUrl);
             currentAdvert.setCreatedDate(new Date());
             try {
                 advertDao.create(currentAdvert);
